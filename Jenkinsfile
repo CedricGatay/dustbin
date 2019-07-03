@@ -9,7 +9,7 @@ node('master') {
        try {
            stage('build') {
                withCredentials([sshUserPrivateKey(credentialsId: "cgtestlulu", keyFileVariable: 'keyfile')]) {
-                   sh "ssh-add -L"
+                   //sh "ssh-add -L"
                    sh "GIT_SSH_COMMAND='ssh -i ${keyfile}' GIT_CURL_VERBOSE=1 GIT_TRACE=1 git pull origin master"
                }
            }
