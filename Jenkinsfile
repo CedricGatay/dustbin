@@ -18,7 +18,7 @@ node('master') {
                   sh "git config --global user.email 'you@example.com'"
                   sh "git config --global user.name 'Your Name'"
                   sh "git commit -m'committing'"
-                  sh "git push"
+                  sh "git push origin HEAD:master"
                }
            }
        } catch (e) {
