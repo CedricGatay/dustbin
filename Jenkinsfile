@@ -8,9 +8,9 @@ node('master') {
    docker.image('openjdk:8-jdk').inside('-v /var/cache/gradle:/tmp/gradle-user-home:rw') {
        try {
            stage('build') {
-               sshagent(['cgtestlulu']) {
+               withCredentials([sshUserPrivateKey(credentialsId: "cgtestlulu", keyFileVariable: 'keyfile')]) {
                    sh "ssh-add -L"
-                   sh "GIT_CURL_VERBOSE=1 GIT_TRACE=1 git pull origin master"
+                   sh "GIT_SSH_COMMAND='ssh -i ${keyfile}' GIT_CURL_VERBOSE=1 GIT_TRACE=1 git pull origin master"
                }
            }
        } catch (e) {
