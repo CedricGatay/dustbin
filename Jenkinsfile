@@ -15,6 +15,8 @@ node('master') {
                   sh "GIT_CURL_VERBOSE=1 GIT_TRACE=1 git pull origin master"
                   sh "echo \$(date) >> date"
                   sh "git add date"
+                  sh "git config --global user.email 'you@example.com'"
+                  sh "git config --global user.name 'Your Name'"
                   sh "git commit -m'committing'"
                   sh "git push"
                }
