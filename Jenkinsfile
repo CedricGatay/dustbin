@@ -9,6 +9,7 @@ node('master') {
        try {
            stage('build') {
                sshagent(['cgtestlulu']) {
+                  sh "ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts"
                    sh "ssh-add -L"
                    sh "GIT_CURL_VERBOSE=1 GIT_TRACE=1 git pull origin master"
                }
