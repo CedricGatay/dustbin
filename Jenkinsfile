@@ -5,7 +5,7 @@ node('master') {
        }
    }
 
-   docker.image('openjdk:8-jdk').inside('-v /var/cache/gradle:/tmp/gradle-user-home:rw') {
+   docker.image('openjdk:8-jdk').inside('-v /var/cache/gradle:/tmp/gradle-user-home:rw -u 0') {
        try {
            stage('build') {
                withCredentials([sshUserPrivateKey(credentialsId: "cgtestlulu", keyFileVariable: 'keyfile')]) {
