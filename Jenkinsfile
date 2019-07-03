@@ -9,7 +9,7 @@ node('master') {
        try {
            stage('build') {
                sshagent(['cgtestlulu']) {
-                   sh "git pull"
+                   sh "git pull -vvv"
                }
            }
        } catch (e) {
